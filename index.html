@@ -30,6 +30,7 @@
             background-color: var(--pa-blue); 
             color: var(--pa-white);
             line-height: 1.6;
+            padding-bottom: 120px; /* Espaço para o player fixo */
         }
 
         /* Navbar */
@@ -38,8 +39,7 @@
             top: 0; width: 100%; height: var(--nav-height);
             background: var(--pa-white);
             z-index: 9999;
-            display: flex;
-            align-items: center;
+            display: flex; align-items: center;
             border-bottom: 5px solid var(--pa-red);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
@@ -51,38 +51,48 @@
         }
 
         .main-logo { height: 50px; width: auto; }
-
         .nav-menu { display: flex; list-style: none; gap: 15px; }
         .nav-link { text-decoration: none; color: var(--pa-blue); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
 
         /* Hero */
-        .hero { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 20px 60px; }
+        .hero { min-height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 20px 40px; }
         .hero-title { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; text-shadow: 3px 3px 0px var(--pa-red); margin-bottom: 15px; }
 
         /* White Box Layout */
         .section-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .white-box { background: var(--pa-white); color: var(--pa-text-dark); border-radius: 20px; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); margin-bottom: 30px; }
-        .section-title { color: var(--pa-blue); font-size: 2.2rem; font-weight: 900; margin-bottom: 25px; text-align: center; }
+        .section-title { color: var(--pa-blue); font-size: 2rem; font-weight: 900; margin-bottom: 20px; text-align: center; }
 
-        /* Buttons & Social */
+        /* História */
+        .history-content { font-size: 1.1rem; line-height: 1.8; text-align: justify; color: #334155; }
+        .highlight { border-left: 5px solid var(--pa-red); padding-left: 20px; margin: 20px 0; font-weight: 700; color: var(--pa-blue); font-style: italic; }
+
+        /* Botões & Redes */
         .btn-primary { background: var(--pa-red); color: white; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 800; border: none; cursor: pointer; display: inline-block; }
         .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 25px; }
-        .social-btn { display: flex; flex-direction: column; align-items: center; padding: 20px; border-radius: 15px; text-decoration: none; color: white; font-weight: 800; }
+        .social-btn { display: flex; flex-direction: column; align-items: center; padding: 15px; border-radius: 15px; text-decoration: none; color: white; font-weight: 800; transition: 0.3s; }
         .btn-whatsapp { background: var(--whatsapp); }
         .btn-instagram { background: var(--instagram); }
-        .btn-facebook { background: var(--facebook); }
+        .social-btn:hover { transform: translateY(-5px); }
 
-        /* Player Fixo */
-        .radio-player-fixed { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--pa-white); border-top: 5px solid var(--pa-red); padding: 15px; z-index: 10000; }
-        .player-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .btn-play-radio { background: var(--pa-blue); color: white; border: none; padding: 10px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        /* PLAYER FIXO ESTILIZADO */
+        .fixed-radio-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: #f8fafc; border-top: 4px solid var(--pa-red);
+            padding: 10px 0; z-index: 10000;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+        }
+        .player-inner { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px; }
+        
+        /* Ajuste do Iframe para ficar limpo */
+        .zeno-frame { border-radius: 10px; border: none; width: 300px; height: 60px; background: transparent; }
 
         /* Modal */
-        .modal-overlay { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center; }
-        .modal-content { background: white; padding: 40px; border-radius: 20px; max-width: 450px; width: 90%; text-align: center; color: var(--pa-text-dark); position: relative; }
+        .modal-overlay { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 40px; border-radius: 20px; max-width: 400px; width: 90%; text-align: center; color: var(--pa-text-dark); position: relative; }
         .close-modal { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: var(--pa-red); }
 
-        @media (max-width: 768px) { .nav-menu { display: none; } }
+        @media (max-width: 768px) { .nav-menu { display: none; } .fixed-radio-bar { padding: 15px 10px; } }
     </style>
 </head>
 
@@ -90,10 +100,10 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#home"><img src="logo.png" alt="Logo" class="main-logo"></a>
+            <a href="#home"><img src="logo.png" alt="Alô Comunidade" class="main-logo"></a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Início</a></li>
-                <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                <li><a href="#sobre" class="nav-link">História</a></li>
                 <li><a href="#doacoes" class="nav-link">Doações</a></li>
                 <li><a href="#contact" class="nav-link">Contato</a></li>
             </ul>
@@ -102,31 +112,36 @@
 
     <header class="hero" id="home">
         <h1 class="hero-title">Alô Comunidade</h1>
-        <p>A força do povo paraense com André Guedes.</p>
+        <p>Levando esperança e música para todo o Pará.</p>
     </header>
 
     <section class="section-container" id="sobre">
         <div class="white-box">
-            <h2 class="section-title">História de Perseverança</h2>
-            <p>O radialista André Guedes transformou o <strong>Alô Comunidade</strong> em um símbolo de apoio às periferias. Sua trajetória é marcada pela luta incansável para dar voz a quem precisa e levar auxílio direto às famílias do nosso estado.</p>
+            <h2 class="section-title">André Guedes e o Povo</h2>
+            <div class="history-content">
+                <p>O radialista <strong>André Guedes</strong> construiu sua carreira com base em um valor raro: a perseverança. À frente do <strong>Alô Comunidade</strong>, ele não apenas apresenta sucessos, mas coordena uma rede de apoio às famílias das periferias.</p>
+                <div class="highlight">
+                    "O microfone é a minha ferramenta para servir àqueles que mais precisam de voz."
+                </div>
+                <p>Sua trajetória é marcada por campanhas de doação, denúncias sociais e uma conexão direta com o coração das comunidades paraenses.</p>
+            </div>
         </div>
     </section>
 
     <section class="section-container" id="doacoes">
         <div class="white-box" style="text-align: center;">
-            <h2 class="section-title">Apoie o Projeto</h2>
-            <p>Sua doação ajuda a manter nossas ações sociais.</p><br>
-            <button id="openDonate" class="btn-primary" style="background: var(--pa-blue);">QUERO DOAR (PIX)</button>
+            <h2 class="section-title">Apoio Social</h2>
+            <p>Ajude a manter nossas cestas básicas e ações nas comunidades.</p><br>
+            <button id="openDonate" class="btn-primary" style="background: var(--pa-blue);">DOAR VIA PIX</button>
         </div>
     </section>
 
     <section class="section-container" id="contact">
         <div class="white-box">
-            <h2 class="section-title">Redes Sociais</h2>
+            <h2 class="section-title">Conecte-se Conosco</h2>
             <div class="social-grid">
-                <a href="https://wa.me/5591985090967" class="social-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="https://instagram.com/andreguedes.pa" class="social-btn btn-instagram"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="#" class="social-btn btn-facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="https://wa.me/5591985090967" target="_blank" class="social-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://instagram.com/andreguedes.pa" target="_blank" class="social-btn btn-instagram"><i class="fab fa-instagram"></i> Instagram</a>
             </div>
         </div>
     </section>
@@ -134,55 +149,26 @@
     <div id="donateModal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2>Doe via PIX</h2>
-            <div style="background: #f0f4ff; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px dashed var(--pa-blue);">
-                <p>Chave Celular:</p>
-                <h3 style="color: var(--pa-red);">(91) 99121-5444</h3>
-                <p><small>André Guedes</small></p>
+            <h2 style="color: var(--pa-blue);">Doe Agora</h2>
+            <div style="background: #f0f4ff; padding: 20px; border-radius: 15px; margin: 20px 0; border: 2px dashed var(--pa-blue);">
+                <p>Chave PIX (Celular):</p>
+                <h3 style="color: var(--pa-red); font-size: 1.5rem;">(91) 99121-5444</h3>
+                <p><small>Titular: André Guedes</small></p>
             </div>
         </div>
     </div>
 
-    <div class="radio-player-fixed">
-        <div class="player-container">
-            <div style="color:var(--pa-blue); font-weight:800; font-size: 0.8rem;">
-                <i class="fas fa-circle" style="color:var(--pa-red);"></i> AO VIVO
+    <div class="fixed-radio-bar">
+        <div class="player-inner">
+            <div style="color: var(--pa-blue); font-weight: 900; font-size: 0.8rem; display: flex; align-items: center; gap: 8px;">
+                <i class="fas fa-broadcast-tower" style="color: var(--pa-red);"></i> NO AR:
             </div>
-            <audio id="radio" preload="none">
-                <source src="https://stream.zeno.fm/995nrt06wshvv" type="audio/mpeg">
-            </audio>
-            <button class="btn-play-radio" onclick="toggleRadio()" id="btnR">
-                <i class="fas fa-play"></i> OUVIR AGORA
-            </button>
+            <iframe src="https://zeno.fm/player/web-radio-super-crystal-fm" class="zeno-frame" scrolling="no"></iframe>
         </div>
     </div>
 
     <script>
-        const radio = document.getElementById('radio');
-        const btn = document.getElementById('btnR');
-
-        function toggleRadio() {
-            if (radio.paused) {
-                // Truque: resetar o src para forçar o buffer do streaming
-                const currentSrc = radio.querySelector('source').src;
-                radio.src = currentSrc + "?ts=" + new Date().getTime(); 
-                
-                radio.play().then(() => {
-                    btn.innerHTML = '<i class="fas fa-pause"></i> PAUSAR';
-                    btn.style.background = "var(--pa-red)";
-                }).catch(error => {
-                    console.error("Erro ao tocar:", error);
-                    alert("Aguarde um instante... o sinal da rádio está carregando.");
-                });
-            } else {
-                radio.pause();
-                radio.src = ""; // Para o download de dados
-                btn.innerHTML = '<i class="fas fa-play"></i> OUVIR AGORA';
-                btn.style.background = "var(--pa-blue)";
-            }
-        }
-
-        // Modal
+        // Modal Logic
         const modal = document.getElementById("donateModal");
         const btnD = document.getElementById("openDonate");
         const span = document.querySelector(".close-modal");
@@ -191,4 +177,4 @@
         window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
     </script>
 </body>
-</html>       
+</html>
