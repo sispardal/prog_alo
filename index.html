@@ -487,10 +487,7 @@
           ></i>
           RÁDIO AO VIVO
         </div>
-        <audio
-          id="radio"
-          src="https://stream.zeno.fm/995nrt06wshvv/"
-        ></audio>
+        <<audio id="radio" src="https://stream.zeno.fm/995nrt06wshvv/"></audio>>
         <button class="btn-play-radio" onclick="toggleRadio()" id="btnR">
           OUVIR AGORA
         </button>
@@ -511,18 +508,31 @@
     <script>
       // Lógica da Rádio
       function toggleRadio() {
-        const r = document.getElementById("radio");
-        const b = document.getElementById("btnR");
-        if (r.paused) {
-          r.play();
-          b.innerHTML = "PAUSAR";
-          b.style.background = "var(--pa-red)";
-        } else {
-          r.pause();
-          b.innerHTML = "OUVIR AGORA";
-          b.style.background = "var(--pa-blue)";
+    const r = document.getElementById('radio');
+    const b = document.getElementById('btnR');
+    
+    if (r.paused) {
+        // Truque para forçar a conexão com o servidor de rádio
+        r.load(); 
+        
+        let playPromise = r.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                b.innerHTML = '<i class="fas fa-pause"></i> PAUSAR';
+                b.style.background = "var(--pa-red)";
+            }).catch(error => {
+                console.log("Erro ao tocar rádio: ", error);
+                alert("A rádio está offline ou o sinal está fraco. Tente novamente em instantes.");
+            });
         }
-      }
+    } else {
+        r.pause();
+        b.innerHTML = '<i class="fas fa-play"></i> OUVIR AGORA';
+        b.style.background = "var(--pa-blue)";
+    }
+}
+  
 
       // Lógica do Modal de Doação
       const modal = document.getElementById("donateModal");
