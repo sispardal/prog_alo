@@ -1,180 +1,392 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Programa Alô Comunidade | André Guedes</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 
     <style>
-        :root {
-            --pa-blue: #003399;       
-            --pa-red: #ce1126;        
-            --pa-white: #ffffff;
-            --pa-text-dark: #002266;
-            --nav-height: 80px;
-            --whatsapp: #25d366;
-            --instagram: #e1306c;
-            --facebook: #1877f2;
+      :root {
+        --pa-blue: #003399;
+        --pa-red: #ce1126;
+        --pa-white: #ffffff;
+        --pa-text-dark: #002266;
+        --nav-height: 80px;
+        --whatsapp: #25d366;
+        --instagram: #e1306c;
+        --facebook: #1877f2;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: var(--nav-height);
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--pa-blue);
+        color: var(--pa-white);
+        line-height: 1.6;
+        padding-bottom: 120px; /* Espaço para o player fixo */
+      }
+
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: var(--nav-height);
+        background: var(--pa-white);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        border-bottom: 5px solid var(--pa-red);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-container {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .main-logo {
+        height: 50px;
+        width: auto;
+      }
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 15px;
+      }
+      .nav-link {
+        text-decoration: none;
+        color: var(--pa-blue);
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+      }
+
+      /* Hero */
+      .hero {
+        min-height: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 120px 20px 40px;
+      }
+      .hero-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        text-shadow: 3px 3px 0px var(--pa-red);
+        margin-bottom: 15px;
+      }
+
+      /* White Box Layout */
+      .section-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .white-box {
+        background: var(--pa-white);
+        color: var(--pa-text-dark);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        margin-bottom: 30px;
+      }
+      .section-title {
+        color: var(--pa-blue);
+        font-size: 2rem;
+        font-weight: 900;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      /* História */
+      .history-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        text-align: justify;
+        color: #334155;
+      }
+      .highlight {
+        border-left: 5px solid var(--pa-red);
+        padding-left: 20px;
+        margin: 20px 0;
+        font-weight: 700;
+        color: var(--pa-blue);
+        font-style: italic;
+      }
+
+      /* Botões & Redes */
+      .btn-primary {
+        background: var(--pa-red);
+        color: white;
+        padding: 15px 35px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 800;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+      }
+      .social-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 25px;
+      }
+      .social-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+        border-radius: 15px;
+        text-decoration: none;
+        color: white;
+        font-weight: 800;
+        transition: 0.3s;
+      }
+      .btn-whatsapp {
+        background: var(--whatsapp);
+      }
+      .btn-instagram {
+        background: var(--instagram);
+      }
+      .social-btn:hover {
+        transform: translateY(-5px);
+      }
+
+      /* PLAYER FIXO ESTILIZADO */
+      .fixed-radio-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #f8fafc;
+        border-top: 4px solid var(--pa-red);
+        padding: 10px 0;
+        z-index: 10000;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+      }
+      .player-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+      }
+
+      /* Ajuste do Iframe para ficar limpo */
+      .zeno-frame {
+        border-radius: 10px;
+        border: none;
+        width: 300px;
+        height: 60px;
+        background: transparent;
+      }
+
+      /* Modal */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        z-index: 10001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-content {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+        color: var(--pa-text-dark);
+        position: relative;
+      }
+      .close-modal {
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        font-size: 30px;
+        cursor: pointer;
+        color: var(--pa-red);
+      }
+
+      @media (max-width: 768px) {
+        .nav-menu {
+          display: none;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--pa-blue); 
-            color: var(--pa-white);
-            line-height: 1.6;
-            padding-bottom: 120px; /* Espaço para o player fixo */
-        }
-
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0; width: 100%; height: var(--nav-height);
-            background: var(--pa-white);
-            z-index: 9999;
-            display: flex; align-items: center;
-            border-bottom: 5px solid var(--pa-red);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .nav-container {
-            width: 100%; max-width: 1100px;
-            margin: 0 auto; padding: 0 20px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
-        .main-logo { height: 50px; width: auto; }
-        .nav-menu { display: flex; list-style: none; gap: 15px; }
-        .nav-link { text-decoration: none; color: var(--pa-blue); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
-
-        /* Hero */
-        .hero { min-height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 20px 40px; }
-        .hero-title { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; text-shadow: 3px 3px 0px var(--pa-red); margin-bottom: 15px; }
-
-        /* White Box Layout */
-        .section-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        .white-box { background: var(--pa-white); color: var(--pa-text-dark); border-radius: 20px; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); margin-bottom: 30px; }
-        .section-title { color: var(--pa-blue); font-size: 2rem; font-weight: 900; margin-bottom: 20px; text-align: center; }
-
-        /* História */
-        .history-content { font-size: 1.1rem; line-height: 1.8; text-align: justify; color: #334155; }
-        .highlight { border-left: 5px solid var(--pa-red); padding-left: 20px; margin: 20px 0; font-weight: 700; color: var(--pa-blue); font-style: italic; }
-
-        /* Botões & Redes */
-        .btn-primary { background: var(--pa-red); color: white; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 800; border: none; cursor: pointer; display: inline-block; }
-        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 25px; }
-        .social-btn { display: flex; flex-direction: column; align-items: center; padding: 15px; border-radius: 15px; text-decoration: none; color: white; font-weight: 800; transition: 0.3s; }
-        .btn-whatsapp { background: var(--whatsapp); }
-        .btn-instagram { background: var(--instagram); }
-        .social-btn:hover { transform: translateY(-5px); }
-
-        /* PLAYER FIXO ESTILIZADO */
         .fixed-radio-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: #f8fafc; border-top: 4px solid var(--pa-red);
-            padding: 10px 0; z-index: 10000;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+          padding: 15px 10px;
         }
-        .player-inner { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px; }
-        
-        /* Ajuste do Iframe para ficar limpo */
-        .zeno-frame { border-radius: 10px; border: none; width: 300px; height: 60px; background: transparent; }
-
-        /* Modal */
-        .modal-overlay { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; }
-        .modal-content { background: white; padding: 40px; border-radius: 20px; max-width: 400px; width: 90%; text-align: center; color: var(--pa-text-dark); position: relative; }
-        .close-modal { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: var(--pa-red); }
-
-        @media (max-width: 768px) { .nav-menu { display: none; } .fixed-radio-bar { padding: 15px 10px; } }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="#home"><img src="logo.png" alt="Alô Comunidade" class="main-logo"></a>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Início</a></li>
-                <li><a href="#sobre" class="nav-link">História</a></li>
-                <li><a href="#doacoes" class="nav-link">Doações</a></li>
-                <li><a href="#contact" class="nav-link">Contato</a></li>
-            </ul>
-        </div>
+      <div class="nav-container">
+        <a href="#home"
+          ><img src="logo.png" alt="Alô Comunidade" class="main-logo"
+        /></a>
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link">Início</a></li>
+          <li><a href="#sobre" class="nav-link">História</a></li>
+          <li><a href="#doacoes" class="nav-link">Doações</a></li>
+          <li><a href="#contact" class="nav-link">Contato</a></li>
+        </ul>
+      </div>
     </nav>
 
     <header class="hero" id="home">
-        <h1 class="hero-title">Alô Comunidade</h1>
-        <p>Levando esperança e música para todo o Pará.</p>
+      <h1 class="hero-title">Alô Comunidade</h1>
+      <p>Levando esperança e música para todo o Pará.</p>
     </header>
 
     <section class="section-container" id="sobre">
-        <div class="white-box">
-            <h2 class="section-title">André Guedes e o Povo</h2>
-            <div class="history-content">
-                <p>O radialista <strong>André Guedes</strong> construiu sua carreira com base em um valor raro: a perseverança. À frente do <strong>Alô Comunidade</strong>, ele não apenas apresenta sucessos, mas coordena uma rede de apoio às famílias das periferias.</p>
-                <div class="highlight">
-                    "O microfone é a minha ferramenta para servir àqueles que mais precisam de voz."
-                </div>
-                <p>Sua trajetória é marcada por campanhas de doação, denúncias sociais e uma conexão direta com o coração das comunidades paraenses.</p>
-            </div>
+      <div class="white-box">
+        <h2 class="section-title">André Guedes e o Povo</h2>
+        <div class="history-content">
+          <p>
+            O radialista <strong>André Guedes</strong> construiu sua carreira
+            com base em um valor raro: a perseverança. À frente do
+            <strong>Alô Comunidade</strong>, ele não apenas apresenta sucessos,
+            mas coordena uma rede de apoio às famílias das periferias.
+          </p>
+          <div class="highlight">
+            "O microfone é a minha ferramenta para servir àqueles que mais
+            precisam de voz."
+          </div>
+          <p>
+            Sua trajetória é marcada por campanhas de doação, denúncias sociais
+            e uma conexão direta com o coração das comunidades paraenses.
+          </p>
         </div>
+      </div>
     </section>
 
     <section class="section-container" id="doacoes">
-        <div class="white-box" style="text-align: center;">
-            <h2 class="section-title">Apoio Social</h2>
-            <p>Ajude a manter nossas cestas básicas e ações nas comunidades.</p><br>
-            <button id="openDonate" class="btn-primary" style="background: var(--pa-blue);">DOAR VIA PIX</button>
-        </div>
+      <div class="white-box" style="text-align: center">
+        <h2 class="section-title">Apoio Social</h2>
+        <p>Ajude a manter nossas cestas básicas e ações nas comunidades.</p>
+        <br />
+        <button
+          id="openDonate"
+          class="btn-primary"
+          style="background: var(--pa-blue)"
+        >
+          DOAR VIA PIX
+        </button>
+      </div>
     </section>
 
     <section class="section-container" id="contact">
-        <div class="white-box">
-            <h2 class="section-title">Conecte-se Conosco</h2>
-            <div class="social-grid">
-                <a href="https://wa.me/5591985090967" target="_blank" class="social-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="https://instagram.com/andreguedes.pa" target="_blank" class="social-btn btn-instagram"><i class="fab fa-instagram"></i> Instagram</a>
-            </div>
+      <div class="white-box">
+        <h2 class="section-title">Conecte-se Conosco</h2>
+        <div class="social-grid">
+          <a
+            href="https://wa.me/5591985090967"
+            target="_blank"
+            class="social-btn btn-whatsapp"
+            ><i class="fab fa-whatsapp"></i> WhatsApp</a
+          >
+          <a
+            href="https://instagram.com/andreguedes05"
+            target="_blank"
+            class="social-btn btn-instagram"
+            ><i class="fab fa-instagram"></i> Instagram</a
+          >
         </div>
+      </div>
     </section>
 
     <div id="donateModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 style="color: var(--pa-blue);">Doe Agora</h2>
-            <div style="background: #f0f4ff; padding: 20px; border-radius: 15px; margin: 20px 0; border: 2px dashed var(--pa-blue);">
-                <p>Chave PIX (Celular):</p>
-                <h3 style="color: var(--pa-red); font-size: 1.5rem;">(91) 99121-5444</h3>
-                <p><small>Titular: André Guedes</small></p>
-            </div>
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 style="color: var(--pa-blue)">Doe Agora</h2>
+        <div
+          style="
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px dashed var(--pa-blue);
+          "
+        >
+          <p>Chave PIX (Celular):</p>
+          <h3 style="color: var(--pa-red); font-size: 1.5rem">
+            (91) 99121-5444
+          </h3>
+          <p><small>Titular: André Guedes</small></p>
         </div>
+      </div>
     </div>
 
     <div class="fixed-radio-bar">
-        <div class="player-inner">
-            <div style="color: var(--pa-blue); font-weight: 900; font-size: 0.8rem; display: flex; align-items: center; gap: 8px;">
-                <i class="fas fa-broadcast-tower" style="color: var(--pa-red);"></i> NO AR:
-            </div>
-            <iframe src="https://zeno.fm/player/web-radio-super-crystal-fm" class="zeno-frame" scrolling="no"></iframe>
+      <div class="player-inner">
+        <div
+          style="
+            color: var(--pa-blue);
+            font-weight: 900;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          "
+        >
+          <i class="fas fa-broadcast-tower" style="color: var(--pa-red)"></i> NO
+          AR:
         </div>
+        <iframe
+          src="https://stream.zeno.fm/ovjrbttvetevv"
+          class="zeno-frame"
+          scrolling="no"
+        ></iframe>
+      </div>
     </div>
 
     <script>
-        // Modal Logic
-        const modal = document.getElementById("donateModal");
-        const btnD = document.getElementById("openDonate");
-        const span = document.querySelector(".close-modal");
-        btnD.onclick = () => modal.style.display = "flex";
-        span.onclick = () => modal.style.display = "none";
-        window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
+      // Modal Logic
+      const modal = document.getElementById("donateModal");
+      const btnD = document.getElementById("openDonate");
+      const span = document.querySelector(".close-modal");
+      btnD.onclick = () => (modal.style.display = "flex");
+      span.onclick = () => (modal.style.display = "none");
+      window.onclick = (e) => {
+        if (e.target == modal) modal.style.display = "none";
+      };
     </script>
-</body>
+  </body>
 </html>
