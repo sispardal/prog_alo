@@ -30,10 +30,9 @@
             background-color: var(--pa-blue); 
             color: var(--pa-white);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* --- NAVBAR --- */
+        /* Navbar */
         .navbar {
             position: fixed;
             top: 0; width: 100%; height: var(--nav-height);
@@ -51,78 +50,39 @@
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        .main-logo { height: 55px; width: auto; }
+        .main-logo { height: 50px; width: auto; }
 
         .nav-menu { display: flex; list-style: none; gap: 15px; }
-        .nav-link { 
-            text-decoration: none; color: var(--pa-blue); 
-            font-weight: 700; font-size: 0.75rem; text-transform: uppercase; 
-        }
-        .nav-link:hover { color: var(--pa-red); }
+        .nav-link { text-decoration: none; color: var(--pa-blue); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
 
-        /* --- HERO --- */
-        .hero { 
-            min-height: 50vh; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; text-align: center; 
-            padding: 120px 20px 60px; 
-        }
-        .hero-title { 
-            font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; 
-            text-shadow: 3px 3px 0px var(--pa-red); margin-bottom: 15px; 
-        }
-        .hero-subtitle { max-width: 700px; font-size: 1.2rem; opacity: 0.9; }
+        /* Hero */
+        .hero { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 20px 60px; }
+        .hero-title { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; text-shadow: 3px 3px 0px var(--pa-red); margin-bottom: 15px; }
 
-        /* --- SEÇÕES E CAIXAS BRANCAS --- */
+        /* White Box Layout */
         .section-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        
-        .white-box { 
-            background: var(--pa-white); color: var(--pa-text-dark); 
-            border-radius: 20px; padding: 45px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4); margin-bottom: 40px; 
-        }
-
-        .section-tag { color: var(--pa-red); font-weight: 800; text-transform: uppercase; display: block; text-align: center; margin-bottom: 5px; font-size: 0.9rem; }
+        .white-box { background: var(--pa-white); color: var(--pa-text-dark); border-radius: 20px; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); margin-bottom: 30px; }
         .section-title { color: var(--pa-blue); font-size: 2.2rem; font-weight: 900; margin-bottom: 25px; text-align: center; }
 
-        /* --- HISTÓRIA ANDRÉ GUEDES --- */
-        .history-text { font-size: 1.1rem; text-align: justify; }
-        .highlight-box { border-left: 5px solid var(--pa-red); padding: 20px; font-style: italic; margin: 25px 0; color: var(--pa-blue); font-weight: 700; background: #f8fafc; }
-
-        /* --- GRID CARDS --- */
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
-        .feature-card { border: 2px solid #f1f5f9; padding: 30px; border-radius: 15px; text-align: center; background: #f8fafc; }
-        .feature-card i { font-size: 2.5rem; color: var(--pa-red); margin-bottom: 15px; }
-        .feature-card h3 { color: var(--pa-blue); margin-bottom: 10px; }
-
-        /* --- BOTÃO PRINCIPAL --- */
-        .btn-primary { 
-            background: var(--pa-red); color: white; padding: 15px 35px; border-radius: 50px; 
-            text-decoration: none; font-weight: 800; border: none; cursor: pointer; display: inline-block;
-        }
-
-        /* --- REDES SOCIAIS --- */
-        .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 25px; }
-        .social-btn { display: flex; flex-direction: column; align-items: center; padding: 20px; border-radius: 15px; text-decoration: none; color: white; font-weight: 800; transition: 0.3s; }
+        /* Buttons & Social */
+        .btn-primary { background: var(--pa-red); color: white; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 800; border: none; cursor: pointer; display: inline-block; }
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 25px; }
+        .social-btn { display: flex; flex-direction: column; align-items: center; padding: 20px; border-radius: 15px; text-decoration: none; color: white; font-weight: 800; }
         .btn-whatsapp { background: var(--whatsapp); }
         .btn-instagram { background: var(--instagram); }
         .btn-facebook { background: var(--facebook); }
 
-        /* --- MODAL DOAÇÃO --- */
-        .modal-overlay { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 51, 153, 0.9); align-items: center; justify-content: center; }
-        .modal-content { background-color: white; padding: 40px; border-radius: 20px; max-width: 500px; width: 90%; text-align: center; position: relative; animation: slideUp 0.4s ease; color: var(--pa-text-dark); }
-        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .close-modal { position: absolute; right: 20px; top: 15px; font-size: 30px; cursor: pointer; color: var(--pa-red); }
-
-        /* --- PLAYER FIXO --- */
-        .radio-player-fixed { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--pa-white); border-top: 5px solid var(--pa-red); padding: 15px; z-index: 10000; box-shadow: 0 -10px 20px rgba(0,0,0,0.2); }
+        /* Player Fixo */
+        .radio-player-fixed { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--pa-white); border-top: 5px solid var(--pa-red); padding: 15px; z-index: 10000; }
         .player-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .btn-play-radio { background: var(--pa-blue); color: white; border: none; padding: 10px 25px; border-radius: 50px; font-weight: 800; cursor: pointer; }
+        .btn-play-radio { background: var(--pa-blue); color: white; border: none; padding: 10px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 8px; }
 
-        @media (max-width: 768px) {
-            .nav-menu { display: none; }
-            .social-grid { grid-template-columns: 1fr; }
-            .white-box { padding: 25px; }
-        }
+        /* Modal */
+        .modal-overlay { display: none; position: fixed; z-index: 10001; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 40px; border-radius: 20px; max-width: 450px; width: 90%; text-align: center; color: var(--pa-text-dark); position: relative; }
+        .close-modal { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: var(--pa-red); }
+
+        @media (max-width: 768px) { .nav-menu { display: none; } }
     </style>
 </head>
 
@@ -130,11 +90,10 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#home"><img src="logo.png" alt="Alô Comunidade" class="main-logo"></a>
+            <a href="#home"><img src="logo.png" alt="Logo" class="main-logo"></a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Início</a></li>
-                <li><a href="#sobre" class="nav-link">História</a></li>
-                <li><a href="#sorteios" class="nav-link">Sorteios</a></li>
+                <li><a href="#sobre" class="nav-link">Sobre</a></li>
                 <li><a href="#doacoes" class="nav-link">Doações</a></li>
                 <li><a href="#contact" class="nav-link">Contato</a></li>
             </ul>
@@ -143,59 +102,30 @@
 
     <header class="hero" id="home">
         <h1 class="hero-title">Alô Comunidade</h1>
-        <p class="hero-subtitle">A força da solidariedade e do rádio paraense com André Guedes.</p>
+        <p>A força do povo paraense com André Guedes.</p>
     </header>
 
     <section class="section-container" id="sobre">
         <div class="white-box">
-            <span class="section-tag">História</span>
-            <h2 class="section-title">André Guedes e a Perseverança</h2>
-            <div class="history-text">
-                <p>O <strong>Programa Alô Comunidade</strong> é fruto da perseverança do radialista <strong>André Guedes</strong>. Em sua jornada, André sempre acreditou que o rádio é o maior elo de apoio às periferias do Pará.</p>
-                <div class="highlight-box">
-                    "Minha missão é ouvir quem ninguém escuta e ajudar quem mais precisa."
-                </div>
-                <p>Mesmo diante de desafios, ele nunca parou. Hoje, seu programa é um porto seguro para famílias que buscam assistência e uma voz ativa na sociedade.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-container" id="sorteios">
-        <div class="white-box">
-            <span class="section-tag">Participação</span>
-            <h2 class="section-title">Nossos Sorteios</h2>
-            <div class="card-grid">
-                <div class="feature-card">
-                    <i class="fas fa-ticket-alt"></i>
-                    <h3>Como Ganhar</h3>
-                    <p>Mande seu nome e bairro no WhatsApp e concorra a prêmios semanais.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-box-open"></i>
-                    <h3>Prêmios</h3>
-                    <p>Cestas básicas e brindes exclusivos para nossos ouvintes.</p>
-                </div>
-            </div>
+            <h2 class="section-title">História de Perseverança</h2>
+            <p>O radialista André Guedes transformou o <strong>Alô Comunidade</strong> em um símbolo de apoio às periferias. Sua trajetória é marcada pela luta incansável para dar voz a quem precisa e levar auxílio direto às famílias do nosso estado.</p>
         </div>
     </section>
 
     <section class="section-container" id="doacoes">
         <div class="white-box" style="text-align: center;">
-            <span class="section-tag">Apoio Social</span>
-            <h2 class="section-title">Corrente do Bem</h2>
-            <i class="fas fa-hand-holding-heart" style="font-size: 3rem; color: var(--pa-blue); margin-bottom: 20px;"></i>
-            <p>Ajude-nos a manter as doações de alimentos e roupas para a comunidade.</p>
-            <br>
-            <button id="openDonate" class="btn-primary" style="background: var(--pa-blue);">QUERO AJUDAR AGORA</button>
+            <h2 class="section-title">Apoie o Projeto</h2>
+            <p>Sua doação ajuda a manter nossas ações sociais.</p><br>
+            <button id="openDonate" class="btn-primary" style="background: var(--pa-blue);">QUERO DOAR (PIX)</button>
         </div>
     </section>
 
     <section class="section-container" id="contact">
         <div class="white-box">
-            <h2 class="section-title">Fale Conosco</h2>
+            <h2 class="section-title">Redes Sociais</h2>
             <div class="social-grid">
-                <a href="https://wa.me/91991215444" class="social-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="#" class="social-btn btn-instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://wa.me/5591985090967" class="social-btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://instagram.com/andreguedes.pa" class="social-btn btn-instagram"><i class="fab fa-instagram"></i> Instagram</a>
                 <a href="#" class="social-btn btn-facebook"><i class="fab fa-facebook"></i> Facebook</a>
             </div>
         </div>
@@ -204,48 +134,61 @@
     <div id="donateModal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h2 style="color: var(--pa-blue);">Doe via PIX</h2>
+            <h2>Doe via PIX</h2>
             <div style="background: #f0f4ff; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px dashed var(--pa-blue);">
-                <p>Chave PIX (Celular):</p>
+                <p>Chave Celular:</p>
                 <h3 style="color: var(--pa-red);">(91) 99121-5444</h3>
-                <p><small>Favorecido: André Guedes</small></p>
+                <p><small>André Guedes</small></p>
             </div>
-            <p><small>Obrigado por ajudar a nossa comunidade!</small></p>
         </div>
     </div>
 
     <div class="radio-player-fixed">
         <div class="player-container">
-            <div style="color:var(--pa-blue); font-weight:800; font-size: 0.85rem; display: flex; align-items: center; gap: 8px;">
-                <i class="fas fa-circle" style="color:var(--pa-red);"></i> RÁDIO AO VIVO
+            <div style="color:var(--pa-blue); font-weight:800; font-size: 0.8rem;">
+                <i class="fas fa-circle" style="color:var(--pa-red);"></i> AO VIVO
             </div>
-            <audio id="radio" src="https://stream.zeno.fm/995nrt06wshvv/"></audio>
-            <button class="btn-play-radio" onclick="toggleRadio()" id="btnR">OUVIR AGORA</button>
+            <audio id="radio" preload="none">
+                <source src="https://stream.zeno.fm/995nrt06wshvv" type="audio/mpeg">
+            </audio>
+            <button class="btn-play-radio" onclick="toggleRadio()" id="btnR">
+                <i class="fas fa-play"></i> OUVIR AGORA
+            </button>
         </div>
     </div>
 
     <script>
+        const radio = document.getElementById('radio');
+        const btn = document.getElementById('btnR');
+
         function toggleRadio() {
-            const r = document.getElementById('radio');
-            const b = document.getElementById('btnR');
-            if (r.paused) { 
-                r.load(); // Força recarregamento do stream
-                r.play(); 
-                b.innerHTML = "PAUSAR"; 
-                b.style.background = "var(--pa-red)"; 
-            } else { 
-                r.pause(); 
-                b.innerHTML = "OUVIR AGORA"; 
-                b.style.background = "var(--pa-blue)"; 
+            if (radio.paused) {
+                // Truque: resetar o src para forçar o buffer do streaming
+                const currentSrc = radio.querySelector('source').src;
+                radio.src = currentSrc + "?ts=" + new Date().getTime(); 
+                
+                radio.play().then(() => {
+                    btn.innerHTML = '<i class="fas fa-pause"></i> PAUSAR';
+                    btn.style.background = "var(--pa-red)";
+                }).catch(error => {
+                    console.error("Erro ao tocar:", error);
+                    alert("Aguarde um instante... o sinal da rádio está carregando.");
+                });
+            } else {
+                radio.pause();
+                radio.src = ""; // Para o download de dados
+                btn.innerHTML = '<i class="fas fa-play"></i> OUVIR AGORA';
+                btn.style.background = "var(--pa-blue)";
             }
         }
 
+        // Modal
         const modal = document.getElementById("donateModal");
-        const btn = document.getElementById("openDonate");
+        const btnD = document.getElementById("openDonate");
         const span = document.querySelector(".close-modal");
-        btn.onclick = () => modal.style.display = "flex";
+        btnD.onclick = () => modal.style.display = "flex";
         span.onclick = () => modal.style.display = "none";
         window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
     </script>
 </body>
-</html>
+</html>       
